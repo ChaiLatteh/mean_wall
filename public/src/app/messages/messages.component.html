@@ -1,0 +1,13 @@
+<h3>Messages Function</h3>
+<form (submit)="newMessage(formData)" #formData="ngForm">
+  <p>Post a message:</p>
+  <textarea name="message" rows="4" cols="60" ngModel></textarea>
+  <input id="message_post" type="submit" value="Post a message">
+</form>
+
+<h2 *ngIf="user">Welcome {{user.username}}!</h2>
+<div *ngFor="let message of messages">
+  <h5>{{message._user.username}} {{message.createdAt | date: 'mediumDate' }}</h5>
+  <p>{{message.message}}</p>
+  <button (click)="deleteMessage(message)" *ngIf="user._id == message._user._id">DELETE</button>
+</div>
